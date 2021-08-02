@@ -124,17 +124,17 @@ __meta__ = {
 }
 
 [node name="LblMsg" type="Label" parent="VBoxContainer"]
-margin_top = 5.0
 margin_right = 422.0
-margin_bottom = 20.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
 text = "Loading palette..."
 align = 1
 valign = 1
 
 [node name="Palette" type="GridContainer" parent="VBoxContainer"]
-margin_top = 34.0
+margin_top = 60.0
 margin_right = 422.0
-margin_bottom = 34.0
+margin_bottom = 60.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 12
