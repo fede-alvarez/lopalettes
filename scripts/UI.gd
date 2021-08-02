@@ -3,6 +3,7 @@ extends Control
 onready var palette_container = $VBoxContainer/Palette
 onready var palettes = $VBoxContainer/PalettesList
 onready var author = $VBoxContainer/LblAuthor
+onready var loadingMsg = $VBoxContainer/LblMsg
 onready var msg_popup = $MsgPopup
 onready var confirm_popup = $ConfirmationDialog
 
@@ -31,6 +32,8 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	
 	if (!"error" in json.result):
+		author.visible = true
+		loadingMsg.visible = false
 		randomButton.disabled = false
 		pngButton.disabled = false
 		

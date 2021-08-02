@@ -123,16 +123,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Palette" type="GridContainer" parent="VBoxContainer"]
+[node name="LblMsg" type="Label" parent="VBoxContainer"]
+margin_top = 5.0
 margin_right = 422.0
+margin_bottom = 20.0
+text = "Loading palette..."
+align = 1
+valign = 1
+
+[node name="Palette" type="GridContainer" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 422.0
+margin_bottom = 34.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 12
 
 [node name="LblAuthor" type="Label" parent="VBoxContainer"]
-margin_top = 20.0
+visible = false
+margin_top = 54.0
 margin_right = 422.0
-margin_bottom = 34.0
+margin_bottom = 68.0
 custom_colors/font_color = Color( 0.988235, 0.72549, 0.352941, 1 )
 text = "Author: NO SELECTED"
 align = 1
@@ -174,7 +185,6 @@ Copied!"
 align = 1
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -183,7 +193,7 @@ margin_left = -100.0
 margin_top = 10.0
 margin_right = 120.0
 margin_bottom = 90.0
-window_title = "Quit?"
+window_title = "Quit"
 dialog_text = "Do you really want to exit application?"
 dialog_autowrap = true
 __meta__ = {
