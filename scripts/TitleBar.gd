@@ -1,4 +1,5 @@
 extends Control
+onready var confirm = get_parent().get_node("ConfirmationDialog")
 
 var following = false
 var drag_start_position = Vector2()
@@ -14,4 +15,8 @@ func _process(delta):
 		OS.set_window_position(OS.window_position + get_global_mouse_position() - drag_start_position)
 
 func _on_Button_pressed():
+	confirm.show()
+
+
+func _on_ConfirmationDialog_confirmed():
 	get_tree().quit()

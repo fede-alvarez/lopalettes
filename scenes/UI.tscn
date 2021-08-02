@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://entities/Color.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icons/filter [#1384].png" type="Texture" id=1]
 [ext_resource path="res://scripts/UI.gd" type="Script" id=2]
 [ext_resource path="res://scripts/TitleBar.gd" type="Script" id=3]
+[ext_resource path="res://icons/file_png [#1740].png" type="Texture" id=4]
+[ext_resource path="res://icons/shuffle [#240].png" type="Texture" id=5]
+[ext_resource path="res://icons/close [#1538].png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -24,7 +27,7 @@ __meta__ = {
 }
 
 [node name="TitleBar" type="Control" parent="."]
-anchor_right = 1.0
+margin_right = 430.0
 margin_bottom = 32.0
 script = ExtResource( 3 )
 __meta__ = {
@@ -33,7 +36,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="TitleBar"]
 anchor_right = 1.0
-margin_bottom = 32.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 20 )
 mouse_filter = 2
 custom_styles/panel = SubResource( 2 )
@@ -41,104 +44,98 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseButton" type="Button" parent="TitleBar"]
+[node name="CloseButton" type="Button" parent="TitleBar/Panel"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -50.0
-margin_top = -30.0
-margin_right = -10.0
-text = "X"
+margin_left = -45.2533
+margin_top = -31.1908
+margin_right = -12.2533
+margin_bottom = -1.19079
+hint_tooltip = "Close"
+icon = ExtResource( 6 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RandomButton" type="Button" parent="TitleBar"]
+[node name="PNGButton" type="Button" parent="TitleBar/Panel"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -420.0
-margin_top = -27.0
-margin_right = -370.0
-margin_bottom = -2.0
-text = "Rand"
+margin_left = -416.349
+margin_top = -30.6332
+margin_right = -380.349
+margin_bottom = -0.633163
+hint_tooltip = "Save as .png"
+disabled = true
+icon = ExtResource( 4 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PNGButton" type="Button" parent="TitleBar"]
+[node name="RandomButton" type="Button" parent="TitleBar/Panel"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -361.3
-margin_top = -27.0
-margin_right = -311.3
-margin_bottom = -2.0
-text = "PNG"
+margin_left = -370.707
+margin_top = -31.1908
+margin_right = -335.707
+margin_bottom = -0.190788
+hint_tooltip = "Random Palette"
+disabled = true
+icon = ExtResource( 5 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FilterButton" type="Button" parent="TitleBar/Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -327.829
+margin_top = -31.1908
+margin_right = -292.829
+margin_bottom = -0.190788
+hint_tooltip = "Filter palettes"
+disabled = true
+icon = ExtResource( 1 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -205.0
-margin_top = 5.0
-margin_right = 205.0
-margin_bottom = 40.0
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 38.1902
+margin_right = -4.0
+margin_bottom = 88.1902
+rect_min_size = Vector2( 0, 50 )
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Palette" type="GridContainer" parent="VBoxContainer"]
-margin_right = 410.0
-margin_bottom = 35.0
+margin_right = 422.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
-columns = 10
-
-[node name="Color" parent="VBoxContainer/Palette" instance=ExtResource( 1 )]
-
-[node name="Color2" parent="VBoxContainer/Palette" instance=ExtResource( 1 )]
-margin_left = 35.0
-margin_right = 70.0
-
-[node name="Color3" parent="VBoxContainer/Palette" instance=ExtResource( 1 )]
-margin_left = 70.0
-margin_right = 105.0
-
-[node name="Color4" parent="VBoxContainer/Palette" instance=ExtResource( 1 )]
-margin_left = 105.0
-margin_right = 140.0
+columns = 12
 
 [node name="LblAuthor" type="Label" parent="VBoxContainer"]
-margin_top = 55.0
-margin_right = 410.0
-margin_bottom = 69.0
+margin_top = 20.0
+margin_right = 422.0
+margin_bottom = 34.0
 custom_colors/font_color = Color( 0.988235, 0.72549, 0.352941, 1 )
 text = "Author: NO SELECTED"
 align = 1
-
-[node name="PalettesList" type="ItemList" parent="VBoxContainer"]
-visible = false
-margin_top = 89.0
-margin_right = 410.0
-margin_bottom = 189.0
-rect_min_size = Vector2( 0, 100 )
-items = [ "Cherrymelon", null, false, "Iceberg", null, false, "Winterfes-16", null, false, "Sailor-Moon-Background", null, false, "Nyankos16", null, false, "Rising-Tide", null, false, "Grenade-8", null, false, "Just-Add-Water", null, false, "Ys-funky-jam", null, false, "Ys-paper-and-dust", null, false, "Dusty36", null, false, "Cafearisuki", null, false, "Sega-DC-VMU-4 ", null, false, "Energy7 ", null, false, "Onion-Palette ", null, false, "DOSs-Gloomy-Gloss ", null, false, "Kyu", null, false, "Diamond-Gold ", null, false, "Eibre-19", null, false, "Submerged-Chimera ", null, false, "Mario-Pissing ", null, false ]
-allow_reselect = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -151,6 +148,9 @@ margin_left = -215.0
 margin_top = -52.4061
 margin_right = 215.0
 margin_bottom = 47.5939
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="ColorRect" parent="MsgPopup"]
 anchor_top = 0.5
@@ -173,9 +173,26 @@ text = "#FFFFFF
 Copied!"
 align = 1
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = 10.0
+margin_right = 120.0
+margin_bottom = 90.0
+window_title = "Quit?"
+dialog_text = "Do you really want to exit application?"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_Button_pressed"]
-[connection signal="pressed" from="TitleBar/RandomButton" to="." method="_on_RandomButton_pressed"]
-[connection signal="pressed" from="TitleBar/PNGButton" to="." method="_on_PNGButton_pressed"]
-[connection signal="item_selected" from="VBoxContainer/PalettesList" to="." method="_on_PalettesList_item_selected"]
+[connection signal="pressed" from="TitleBar/Panel/CloseButton" to="TitleBar" method="_on_Button_pressed"]
+[connection signal="pressed" from="TitleBar/Panel/PNGButton" to="." method="_on_PNGButton_pressed"]
+[connection signal="pressed" from="TitleBar/Panel/RandomButton" to="." method="_on_RandomButton_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="TitleBar" method="_on_ConfirmationDialog_confirmed"]
