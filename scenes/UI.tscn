@@ -1,55 +1,100 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/Color.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/UI.gd" type="Script" id=2]
 [ext_resource path="res://scripts/TitleBar.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
 
 [node name="UI" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3.05176e-05
-margin_bottom = 20.0
+margin_bottom = -80.0
+rect_min_size = Vector2( 430, 100 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TitleBar" type="Control" parent="."]
-margin_right = 430.0
-margin_bottom = 30.0
+anchor_right = 1.0
+margin_bottom = 32.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="TitleBar"]
+[node name="Panel" type="Panel" parent="TitleBar"]
+anchor_right = 1.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="TitleBar"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -30.0
-margin_top = -25.0
+margin_left = -50.0
+margin_top = -30.0
 margin_right = -10.0
-margin_bottom = 5.0
 text = "X"
 flat = true
-align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RandomButton" type="Button" parent="TitleBar"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -420.0
+margin_top = -27.0
+margin_right = -370.0
+margin_bottom = -2.0
+text = "Rand"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PNGButton" type="Button" parent="TitleBar"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -361.3
+margin_top = -27.0
+margin_right = -311.3
+margin_bottom = -2.0
+text = "PNG"
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -234.995
-margin_right = -10.0
-margin_bottom = -50.9953
-custom_constants/separation = 10
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -205.0
+margin_top = 5.0
+margin_right = 205.0
+margin_bottom = 40.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,17 +121,18 @@ margin_left = 105.0
 margin_right = 140.0
 
 [node name="LblAuthor" type="Label" parent="VBoxContainer"]
-margin_top = 45.0
+margin_top = 55.0
 margin_right = 410.0
-margin_bottom = 59.0
+margin_bottom = 69.0
 custom_colors/font_color = Color( 0.988235, 0.72549, 0.352941, 1 )
 text = "Author: NO SELECTED"
 align = 1
 
 [node name="PalettesList" type="ItemList" parent="VBoxContainer"]
-margin_top = 69.0
+visible = false
+margin_top = 89.0
 margin_right = 410.0
-margin_bottom = 169.0
+margin_bottom = 189.0
 rect_min_size = Vector2( 0, 100 )
 items = [ "Cherrymelon", null, false, "Iceberg", null, false, "Winterfes-16", null, false, "Sailor-Moon-Background", null, false, "Nyankos16", null, false, "Rising-Tide", null, false, "Grenade-8", null, false, "Just-Add-Water", null, false, "Ys-funky-jam", null, false, "Ys-paper-and-dust", null, false, "Dusty36", null, false, "Cafearisuki", null, false, "Sega-DC-VMU-4 ", null, false, "Energy7 ", null, false, "Onion-Palette ", null, false, "DOSs-Gloomy-Gloss ", null, false, "Kyu", null, false, "Diamond-Gold ", null, false, "Eibre-19", null, false, "Submerged-Chimera ", null, false, "Mario-Pissing ", null, false ]
 allow_reselect = true
@@ -97,25 +143,39 @@ __meta__ = {
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="MsgPopup" type="Popup" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.0
+margin_top = -52.4061
+margin_right = 215.0
+margin_bottom = 47.5939
 
 [node name="Background" type="ColorRect" parent="MsgPopup"]
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+margin_top = -52.8346
+margin_bottom = 67.1654
 color = Color( 0.0627451, 0.0627451, 0.0627451, 0.666667 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LblColor" type="Label" parent="MsgPopup"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -15.5
-margin_bottom = 15.5
+margin_top = -9.4037
+margin_bottom = 21.5963
 text = "#FFFFFF
 Copied!"
 align = 1
 
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="TitleBar/Button" to="TitleBar" method="_on_Button_pressed"]
+[connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_Button_pressed"]
+[connection signal="pressed" from="TitleBar/RandomButton" to="." method="_on_RandomButton_pressed"]
+[connection signal="pressed" from="TitleBar/PNGButton" to="." method="_on_PNGButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/PalettesList" to="." method="_on_PalettesList_item_selected"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
