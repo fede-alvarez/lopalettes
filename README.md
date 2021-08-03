@@ -1,5 +1,7 @@
 # Lospec Palettes app
 
+![Working app gif](https://nosvimosahi.com/apps/lospecapp.gif "App")
+
 Lospec apps make easier to navigate your favorite palettes from the site. You can choose some random palette to work with.
 
 ## Features
