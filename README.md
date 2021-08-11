@@ -1,4 +1,4 @@
-# Lospec Palettes app
+# RandomSpec
 
 ![Working app gif](https://nosvimosahi.com/apps/lospecapp.gif "App")
 
