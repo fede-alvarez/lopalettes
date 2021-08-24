@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/Buttons/CloseButtonPressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/Buttons/MenuButtonNormal.png" type="Texture" id=2]
+[ext_resource path="res://assets/Buttons/RandomButtonNormal.png" type="Texture" id=3]
+[ext_resource path="res://assets/Buttons/MenuButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://assets/Buttons/RandomButtonPressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/Buttons/MenuButtonPressed.png" type="Texture" id=6]
+[ext_resource path="res://assets/Buttons/CloseButtonHover.png" type="Texture" id=7]
+[ext_resource path="res://assets/Buttons/RandomButtonHover.png" type="Texture" id=8]
+[ext_resource path="res://assets/Buttons/CloseButtonNormal.png" type="Texture" id=9]
+[ext_resource path="res://assets/Buttons/FilterButtonHover.png" type="Texture" id=10]
+[ext_resource path="res://assets/Buttons/FilterButtonNormal.png" type="Texture" id=11]
+[ext_resource path="res://assets/Buttons/FilterButtonPressed.png" type="Texture" id=12]
+[ext_resource path="res://components/TagsControl.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/MainBar.gd" type="Script" id=14]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.12549, 0.235294, 0.337255, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_detail = 12
+
+[node name="MainBar" type="Panel"]
+margin_right = 430.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 34 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 1.0
+margin_bottom = 33.0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 32 )
+mouse_filter = 2
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="TextureButton" parent="HContainer"]
+margin_right = 30.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 4 )
+
+[node name="RandomButton" type="TextureButton" parent="HContainer"]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 8 )
+
+[node name="FilterButton" type="TextureButton" parent="HContainer"]
+margin_left = 68.0
+margin_right = 98.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 10 )
+
+[node name="TagsControl" parent="HContainer" instance=ExtResource( 13 )]
+
+[node name="Separator" type="Control" parent="HContainer"]
+margin_left = 276.0
+margin_right = 381.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 105, 0 )
+mouse_filter = 1
+
+[node name="CloseButton" type="TextureButton" parent="HContainer"]
+margin_left = 385.0
+margin_right = 415.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 7 )
+
+[node name="OptionsMenu" type="PopupMenu" parent="."]
+margin_top = 36.0
+margin_right = 120.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="HContainer/RandomButton" to="." method="_on_RandomButton_pressed"]
+[connection signal="pressed" from="HContainer/FilterButton" to="." method="_on_FilterButton_pressed"]
+[connection signal="pressed" from="HContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="id_pressed" from="OptionsMenu" to="." method="_on_OptionsMenu_id_pressed"]

@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://components/MainBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/AppInfoWidget.gd" type="Script" id=2]
+[ext_resource path="res://scripts/App.gd" type="Script" id=3]
+[ext_resource path="res://assets/Preloader.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Palettes.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.552941, 0.411765, 0.478431, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "PreloaderAnimation"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Preloader:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 0.0 ]
+}
+
+[node name="App" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainBar" parent="VContainer" instance=ExtResource( 1 )]
+
+[node name="AppInfoBg" type="Panel" parent="VContainer"]
+margin_top = 34.0
+margin_right = 430.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 20 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="LblInfo" type="Label" parent="VContainer/AppInfoBg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Palette Title"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MsgTween" type="Tween" parent="VContainer/AppInfoBg"]
+
+[node name="PaletteGrid" type="GridContainer" parent="VContainer"]
+margin_top = 54.0
+margin_right = 430.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 0, 170 )
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 12
+script = ExtResource( 5 )
+
+[node name="PopupLoader" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 34.0
+
+[node name="Loader" type="ColorRect" parent="PopupLoader"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.14902, 0.14902, 0.14902, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Preloader" type="TextureRect" parent="PopupLoader/Loader"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -11.0
+margin_top = -11.0
+margin_right = 11.0
+margin_bottom = 11.0
+rect_pivot_offset = Vector2( 11, 11 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animator" type="AnimationPlayer" parent="PopupLoader/Loader"]
+autoplay = "PreloaderAnimation"
+anims/PreloaderAnimation = SubResource( 2 )
+
+[node name="ExitDialog" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
+window_title = "Please, Confirm..."
+dialog_text = "Do you really want to quit?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RequestTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="gui_input" from="VContainer/MainBar" to="VContainer/MainBar" method="_on_MainBar_gui_input"]
+[connection signal="confirmed" from="ExitDialog" to="." method="_on_ExitDialog_confirmed"]
+[connection signal="timeout" from="RequestTimer" to="." method="_on_RequestTimer_timeout"]
+[connection signal="request_completed" from="HTTPRequest" to="VContainer/PaletteGrid" method="_on_HTTPRequest_request_completed"]

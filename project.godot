@@ -10,14 +10,22 @@ config_version=4
 
 [application]
 
-config/name="LospecApp"
-run/main_scene="res://scenes/UI.tscn"
+config/name="RandomSpec"
+config/description="Get a random palette or select one you like from lospec.com"
+run/main_scene="res://scenes/App.tscn"
+boot_splash/image="res://assets/boot_transparent.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
 
 [display]
 
 window/size/width=430
-window/size/height=180
+window/size/height=220
 window/size/resizable=false
 window/size/borderless=true
 window/size/always_on_top=true
